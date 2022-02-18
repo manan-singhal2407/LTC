@@ -1,0 +1,83 @@
+.container{
+    width: 100;
+    height: 68vh;
+    padding-top: 20vh;
+    padding-left: 35vw;    
+}
+.box{
+    width: fit-content;
+    padding-bottom:5vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    /* background-color: rgb(23,79,130); */
+    border: none;
+    /* border-style: solid;
+    border-color: black;
+    border-radius: 10px; */
+    box-shadow: 0 10px 20px 0 rgba(1, 2, 20, 0.24), 0 17px 50px 0 rgba(5, 3, 32, 0.19);
+}
+.heading{
+    text-align: center;
+    padding-top: 1vh;
+    padding-bottom: 5vh;
+    font-weight: 600;
+    /* text-decoration: underline; */
+}
+
+.uname{
+    background-image: url("./iconsuser.png");
+    background-color: white;
+    background-position: 0px 4px;
+    background-repeat: no-repeat;
+    /* padding-left: 40px; */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 10px;
+    margin-bottom: 3vh;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.uname:focus{
+    outline: none;
+    border: none;
+    border-bottom: 3px solid black;
+}
+
+.pass{
+    background-image: url("./iconspass.png");
+    background-color: white;
+    background-position: 0px 7px;
+    background-repeat: no-repeat;
+    opacity: 10;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 10px;
+    margin-bottom: 3vh;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+.pass:focus{
+    outline: none;
+    border: none;
+    border-bottom: 3px solid black;
+}
+
+.showP{
+    font-size: 14px;
+}
+
+.button{
+    margin-top: 3vh;
+    padding: 6px;
+    font-size: 15px;
+    background-color: rgb(23,79,130);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 20px 0 rgba(1, 2, 20, 0.24), 0 17px 50px 0 rgba(5, 3, 32, 0.19);
+
+}
