@@ -1,5 +1,5 @@
 import React, {useState } from 'react'
-import {createUserWithEmailAndPassword}from "firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, sendEmailVerification}from "firebase/auth";
 import {auth} from "../firebase-config";
 import { useNavigate} from "react-router-dom"
 import "./LoginBox.css"
@@ -17,9 +17,24 @@ const RegisterBox=()=>{
         }
         else if(password===cnfpassword && password!==""){
             try {
-                const user = await createUserWithEmailAndPassword(auth,email,password);
+                const user = await createUserWithEmailAndPassword(auth,email,password)
+                .then(() => {
+                    sendEmailVerification(getAuth().currentUser)
+                    .then(() => {
+                        console.log("Email verification link send")
+                    })
+                    .catch((error) => {
+                        console.log("Error: In verification link:", error.code, error.message)
+                    });
+                    //console.log("Email added")
+                  })
+                  .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode + " -- " + errorMessage)
+                  });
                 navigate("/");
-                console.log(user)
+                //console.log(user)
             } catch (error) {
                 alert(error.message)
             }           

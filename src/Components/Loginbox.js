@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
-import{signInWithEmailAndPassword} from "firebase/auth"
+import{getAuth, signInWithEmailAndPassword, sendEmailVerification} from "firebase/auth"
 import {auth} from "../firebase-config"
 import './LoginBox.css';
 import Navbar from './nav';
+//import {toast} from 'react-toastify';
+//import 'react-toastify/dist/ReactToastify.css';
+//toast.configure()
 
 const LoginBox = () => {
 
@@ -14,7 +17,26 @@ const LoginBox = () => {
 
     const logUser=async()=>{
         try{
-            const user = await signInWithEmailAndPassword(auth,email,password);
+            const user = await signInWithEmailAndPassword(auth,email,password)
+            .then(() => {
+                if (getAuth().currentUser.emailVerified) {
+                    console.log("Email verified send to next page")
+                }
+                else {
+                    
+                    sendEmailVerification(getAuth().currentUser)
+                    .then(() => {
+                        console.log("Email verification link send")
+                    })
+                    .catch((error) => {
+                        console.log("Error: In verification link:", error.code, error.message)
+                    });
+                    alert("Email not verified send new snkjhdjvxh")
+                }
+            })
+            .catch((error) => {
+                alert(error.message)
+            });
             console.log(user)
         } catch(error){
                 alert(error);
