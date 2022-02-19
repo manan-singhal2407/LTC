@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import{getAuth, signInWithEmailAndPassword, sendEmailVerification} from "firebase/auth"
 import {auth} from "../firebase-config"
 import './LoginBox.css';
@@ -13,13 +13,14 @@ const LoginBox = () => {
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
 
-    
+    const navigate = useNavigate();
 
     const logUser=async()=>{
         try{
             const user = await signInWithEmailAndPassword(auth,email,password)
             .then(() => {
                 if (getAuth().currentUser.emailVerified) {
+                    navigate("/userpage")
                     console.log("Email verified send to next page")
                 }
                 else {
@@ -58,8 +59,9 @@ const LoginBox = () => {
     return (
         <>
         <Navbar/>
+        
 
-        <div className="container">
+        <div className="container" id="at">
             <div className="box">
                 <div className="heading">
                     Login
