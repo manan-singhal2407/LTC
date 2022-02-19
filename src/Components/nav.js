@@ -1,26 +1,8 @@
-import React,{useState} from 'react';
-import { Link } from "react-router-dom";
+import React from 'react';
 import './NavbarElements.css';
 
 
 const Navbar = () => {
-
-  let [Text,setText]=useState("Register");
-  let [path,setpath]=useState("/register");
-
-
-  const hello =()=>{
-    if(Text==="Register" && path ==="/register"){
-      setText("Login")
-      setpath("/")
-    }
-    else{
-      setText("Register")
-      setpath("/register")
-    }
-    console.log(Text,path);
-  }
-  
   return (
     <>
       <div className="header">
@@ -32,11 +14,6 @@ const Navbar = () => {
         <div className="ltc">
             Leave/Travel Concession
         </div>
-        <div className="f1"></div>
-        <Link className='logbtn' to={path} onClick={hello}>{Text}</Link>
-          {/* <div className="reg">
-            <Link className='regbtn' to ="/register">Register</Link>
-          </div> */}
         </div>
     </>
   );

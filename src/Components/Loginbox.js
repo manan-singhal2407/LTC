@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 import{signInWithEmailAndPassword} from "firebase/auth"
 import {auth} from "../firebase-config"
 import './LoginBox.css';
+import Navbar from './nav';
+
 const LoginBox = () => {
 
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
 
-
+    
 
     const logUser=async()=>{
         try{
@@ -29,8 +32,11 @@ const LoginBox = () => {
         }
     }
 
+
     return (
         <>
+        <Navbar/>
+
         <div className="container">
             <div className="box">
                 <div className="heading">
@@ -43,8 +49,16 @@ const LoginBox = () => {
                     <br />
                     <label className='showP'><input  type="checkbox" onClick={showPass} />Show Password </label>
                     <br />
-                    <input className="button" type="button" onClick={logUser} value="Login" />
                 </form>
+                <div className='buttondiv'>
+                <button className="button"  onClick={logUser}>Login</button>
+                </div>
+                <div className='fpassdiv'>
+                <Link className='fpass' to="/forgotpassword">forgot password?</Link> 
+                </div>
+                <div className='reglinkdiv'>
+                <Link className='reglink'to="/register" >Create new account</Link>
+                </div>
             </div>
         </div>
         </>

@@ -1,21 +1,32 @@
 import React, {useState } from 'react'
 import {createUserWithEmailAndPassword}from "firebase/auth";
 import {auth} from "../firebase-config";
+import { useNavigate} from "react-router-dom"
 import "./LoginBox.css"
+import Navbar from './nav';
 
 const RegisterBox=()=>{
 
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
     const [cnfpassword,setcnfpassword]=useState("");
-
+    const navigate = useNavigate();
     const reg=async()=>{
-        try{
-            const user = await createUserWithEmailAndPassword(auth,email,password);
-            console.log(user)
-        } catch(error){
-                console.log(error.message);
-            }
+        if(email==="" && password===""&&cnfpassword===""){
+            alert("Enter email and pass")
+        }
+        else if(password===cnfpassword && password!==""){
+            try {
+                const user = await createUserWithEmailAndPassword(auth,email,password);
+                navigate("/");
+                console.log(user)
+            } catch (error) {
+                alert(error.message)
+            }           
+        }
+        else{
+            alert("Password does not match")
+        }
     }
 
     const showPass = ()=>{
@@ -32,6 +43,7 @@ const RegisterBox=()=>{
     }
 return(
     <>
+    <Navbar/>
     <div className="container">
         <div className="box">
             <div className="heading">

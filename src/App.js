@@ -1,9 +1,8 @@
 import './App.css';
 import React from 'react'
-import Navbar from './Components/nav';
 import LoginBox from"./Components/Loginbox"
 import RegisterBox from "./Components/Registerbox"
-import './Components/NavbarElements.css';
+import ForgotPassBox from './Components/ForgotPassBox';
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,10 +14,10 @@ function App() {
   return (
     <>
     <Router>
-    <Navbar/>
       <Routes>
         <Route  path="/" element={<LoginBox/>}/>
         <Route  path="/register" element={<RegisterBox />}/>
+        <Route  path="/forgotpassword" element={<ForgotPassBox />}/>
       </Routes>
     </Router>
     </>
