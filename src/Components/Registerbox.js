@@ -59,9 +59,9 @@ const RegisterBox=()=>{
 return(
     <>
     <Navbar/>
-    <div className="container">
-        <div className="box">
-            <div className="heading">
+    <div className="container1">
+        <div className="box1">
+            <div className="heading1">
                 Create new Account
             </div>
             <form >

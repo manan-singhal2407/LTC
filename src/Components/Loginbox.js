@@ -24,7 +24,6 @@ const LoginBox = () => {
                     console.log("Email verified send to next page")
                 }
                 else {
-                    
                     sendEmailVerification(getAuth().currentUser)
                     .then(() => {
                         console.log("Email verification link send")
@@ -59,11 +58,9 @@ const LoginBox = () => {
     return (
         <>
         <Navbar/>
-        
-
-        <div className="container" id="at">
-            <div className="box">
-                <div className="heading">
+        <div className="container1" id ="at">
+            <div className="box1">
+                <div className="heading1">
                     Login
                 </div>
                 <form> 
@@ -73,10 +70,12 @@ const LoginBox = () => {
                     <br />
                     <label className='showP'><input  type="checkbox" onClick={showPass} />Show Password </label>
                     <br />
+                    
                 </form>
                 <div className='buttondiv'>
-                <button className="button"  onClick={logUser}>Login</button>
+                        <button className="button" type='submit'  onClick={logUser}>Login</button>
                 </div>
+                
                 <div className='fpassdiv'>
                 <Link className='fpass' to="/forgotpassword">forgot password?</Link> 
                 </div>

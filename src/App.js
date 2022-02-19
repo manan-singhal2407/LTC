@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react'
 import LoginBox from"./Components/Loginbox"
 import RegisterBox from "./Components/Registerbox"
@@ -9,6 +8,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Navbar from './Components/nav';
 
 
 function App() {

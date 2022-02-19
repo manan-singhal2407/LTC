@@ -1,29 +1,25 @@
-.header {
+.header1 {
     height: 13vh;
     width: 100%;
     display: flex;
     position: relative;
     padding-bottom: 2vh;
     background-color: rgb(23,79,130);
-}
+} 
 
-.logo {
+.logo1 {
     margin-top: 5px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    height: inherit;
+    /* height: inherit; */
     padding-left: 2vw;
     padding-right: 2vw;
 }
-.Name{
-    /* flex: 1; */
+.Name1{
     height: inherit;
-    /* width: 100%; */
     background-size: contain;
-    /* background-color: black; */
     position: relative;
-    /* padding-left: 0vw; */
 }
 
 .colname{
@@ -32,7 +28,7 @@
     height: max-content;
     width: fit-content;
     font-weight: bold;
-    /* background-color: bisque; */
+    background-color: rgb(23,79,130);
     
 }
 .hiname{
@@ -40,12 +36,10 @@
     background-size: contain;
     height: fit-content;
     width: fit-content;
-    font-weight: bold;
-    /* background-color:aqua ; */
-    
+    font-weight: bold;    
 }
 
-.ltc{
+.ltc1{
     padding-top: 2vh;
     padding-left: 8vw;
     font-size:30px;
@@ -55,8 +49,6 @@
 }
 
 .logbtn{
-    /* width: fit-content; */
-    /* background-color: blue; */
     border: none;
     padding-top: 2vh;
     padding-left: 2vw;
@@ -93,7 +85,6 @@
 
 .child {
     position: relative;
-    /* background-color: aqua; */
     background-size: contain;
     padding: right 10px;
 }
