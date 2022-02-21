@@ -66,9 +66,9 @@ function Ltc(){
 //         setChecked(event.target.checked);
 //     };
 
-    const[tableData,setTableData] = React.useState([
+//     const[tableData,setTableData] = React.useState([
         
-    ]);
+//     ]);
     const columns =[
         {title: "Serial No.",field:"serial"},
         {title:"Name",field:"name"},
