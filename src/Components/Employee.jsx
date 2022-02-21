@@ -34,6 +34,7 @@ function Employee(props){
         Edays:'',
         checked:null,
         cert:"",
+        numRows:0
     })
 
 
@@ -147,9 +148,9 @@ function Employee(props){
                     size='small'
                     onChange={(event)=>{setLTC({...LTC,spouse:event.target.value})}}
                     >
-                    <MenuItem value={1}>Yes, Entitled to LTC</MenuItem>
-                    <MenuItem value={2}>Yes, Not Entitled to LTC</MenuItem>
-                    <MenuItem value={3}>No</MenuItem>
+                    <MenuItem value={"Yes, Entitled to LTC"}>Yes, Entitled to LTC</MenuItem>
+                    <MenuItem value={"Yes, Not Entitled to LTC"}>Yes, Not Entitled to LTC</MenuItem>
+                    <MenuItem value={"No"}>No</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -219,6 +220,7 @@ function Employee(props){
                 <Table columns={columns} data = {tableData} 
                     editable = {{
                         onRowAdd:(newRow)=>new Promise((resolve,reject)=>{
+                            setLTC({...LTC,numRows:LTC.numRows+1})
                             setTableData([...tableData,newRow])
                             resolve()
                         }),
@@ -232,6 +234,7 @@ function Employee(props){
                             const updatedData = [...tableData]
                             updatedData.splice(selectedRow.tableData.id,1)
                             setTableData(updatedData)
+                            setLTC({...LTC,numRows:LTC.numRows-1})
                             resolve()
                         })
                     }}
@@ -251,8 +254,8 @@ function Employee(props){
                     size='small'
                     onChange={inputEventltc}
                     >
-                    <MenuItem value={1}>Yes</MenuItem>
-                    <MenuItem value={2}>No</MenuItem>
+                    <MenuItem value={"Yes"}>Yes</MenuItem>
+                    <MenuItem value={"No"}>No</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -269,8 +272,8 @@ function Employee(props){
                     size='small'
                     onChange={inputEventltc}
                     >
-                    <MenuItem value={1}>Yes</MenuItem>
-                    <MenuItem value={2}>No</MenuItem>
+                    <MenuItem value={"Yes"}>Yes</MenuItem>
+                    <MenuItem value={"No"}>No</MenuItem>
                     </Select>
                 </FormControl>
                 <p>If Yes:</p>
