@@ -38,36 +38,33 @@ function Ltc(){
     })
 
 
+//     const[Nature,setNature]=React.useState("");
 
 
+//     const [from_value, setfromValue] = React.useState(null);
+//     const [to_value, settoValue] = React.useState(null);
 
-    const[Nature,setNature]=React.useState("");
+//     const [status, setStatus] = React.useState('');
+//     const handleChange = (event) => {
+//       setStatus(event.target.value);
+//     };
 
+//     const [back_status, setBackStatus] = React.useState('');
+//     const back_handleChange = (event) => {
+//       setBackStatus(event.target.value);
+//     };
 
-    const [from_value, setfromValue] = React.useState(null);
-    const [to_value, settoValue] = React.useState(null);
+//     const [sj_from_value, set_sj_fromValue] = React.useState(null);
+//     const [sj_to_value, set_sj_toValue] = React.useState(null);
 
-    const [status, setStatus] = React.useState('');
-    const handleChange = (event) => {
-      setStatus(event.target.value);
-    };
-
-    const [back_status, setBackStatus] = React.useState('');
-    const back_handleChange = (event) => {
-      setBackStatus(event.target.value);
-    };
-
-    const [sj_from_value, set_sj_fromValue] = React.useState(null);
-    const [sj_to_value, set_sj_toValue] = React.useState(null);
-
-    const [fj_from_value, set_fj_fromValue] = React.useState(null);
-    const [fj_to_value, set_fj_toValue] = React.useState(null);
+//     const [fj_from_value, set_fj_fromValue] = React.useState(null);
+//     const [fj_to_value, set_fj_toValue] = React.useState(null);
     
-    const [checked, setChecked] = React.useState(null);
+//     const [checked, setChecked] = React.useState(null);
 
-    const check_handleChange = (event) => {
-        setChecked(event.target.checked);
-    };
+//     const check_handleChange = (event) => {
+//         setChecked(event.target.checked);
+//     };
 
     const[tableData,setTableData] = React.useState([
         
