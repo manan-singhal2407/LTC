@@ -4,42 +4,315 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import Table from 'material-table';
 
-function Employee(){
-    const [FirstName, setFirstName] = React.useState("");
-    const [LastName, setLastName] = React.useState("");
-    const [EmpCode, setEmpCode] = React.useState("");
-    const [Designation, setDesignation] = React.useState("");
-    const [Dept, setDept] = React.useState("");
-    const [JoinDate, setJoinDate] = React.useState(null);
-    const [BandPay, setBandPay] = React.useState("");
 
-    return( <>
+function Employee(props){
+
+    const[Nature,setNature]=React.useState("");
+
+
+    const [from_value, setfromValue] = React.useState(null);
+    const [to_value, settoValue] = React.useState(null);
+
+    const [status, setStatus] = React.useState('');
+    const handleChange = (event) => {
+      setStatus(event.target.value);
+    };
+
+    const [back_status, setBackStatus] = React.useState('');
+    const back_handleChange = (event) => {
+      setBackStatus(event.target.value);
+    };
+
+    const [sj_from_value, set_sj_fromValue] = React.useState(null);
+    const [sj_to_value, set_sj_toValue] = React.useState(null);
+
+    const [fj_from_value, set_fj_fromValue] = React.useState(null);
+    const [fj_to_value, set_fj_toValue] = React.useState(null);
+    
+    const [checked, setChecked] = React.useState(null);
+
+    const check_handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
+
+    const[tableData,setTableData] = React.useState([
+        
+    ]);
+    const columns =[
+        {title: "Serial No.",field:"serial"},
+        {title:"Name",field:"name"},
+        {title:"Age",field:"age"},
+        {title:"Relationship",field:"relation"},
+        {title:"Travelling(Place) From",field:"tfrom"},
+        {title:"Travelling(Place) To",field:"tto"},
+        {title:"Travelling Back (Yes/No)",field:"tback",lookup:{yes:"Yes",no:"No"}},
+        {title:"Mode of Travel",field:"mode"}
+    ];
+
+    // Employee Code Starts
+
+
+    // const [FirstName, setFirstName] = React.useState("");
+    // const [LastName, setLastName] = React.useState("");
+    // const [EmpCode, setEmpCode] = React.useState("");
+    // const [Designation, setDesignation] = React.useState("");
+    // const [Dept, setDept] = React.useState("");
+    // const [JoinDate, setJoinDate] = React.useState(null);
+    // const [BandPay, setBandPay] = React.useState("");
+
+    const[employee,setemployee]=React.useState({
+        FirstName:'',
+        LastName:'',
+        EmpCode:'',
+        Designation:'',
+        Dept:'',
+        JoinDate:null,
+        BandPay:''
+    })
+
+    const inputEvent=async(e)=>{
+        setemployee({...employee,[e.target.name]:e.target.value});
+    }
+    
+    const func=()=>{
+        props.func(employee)
+    }
+
+    return(
+        <>
         <div className='employee_details'>
             <h3 className='heading'>Employee Details</h3>
             <div className='name_code'>
                 <p>Employee Name & Code:</p>
-                <TextField id="outlined-basic" label="First Name" size='small' variant="outlined" value={FirstName} onChange={(e) => setFirstName(e.target.value)} />
-                <TextField id="outlined-basic" label="Last Name" size='small' variant="outlined" value={LastName} onChange={(e) => setLastName(e.target.value)} />
-                <TextField id="outlined-basic" label="Employee Code" size='small' variant="outlined" value={EmpCode} onChange={(e) => setEmpCode(e.target.value)} />
+                <TextField id="outlined-basic" label="First Name" size='small' variant="outlined" name='FirstName' value={employee.FirstName} onChange={inputEvent} />
+                <TextField id="outlined-basic" label="Last Name" size='small' variant="outlined" name='LastName' value={employee.LastName} onChange={inputEvent} />
+                <TextField id="outlined-basic" label="Employee Code" size='small' variant="outlined" name='EmpCode' value={employee.EmpCode} onChange={inputEvent} />
             </div>
             <div className='des_dep'>
                 <p>Designation & Department:</p>
-                <TextField id="outlined-basic" label="Designation" size='small' variant="outlined" value={Designation} onChange={(e) => setDesignation(e.target.value)} />
-                <TextField id="outlined-basic" label="Department" size='small' variant="outlined" value={Dept} onChange={(e) => setDept(e.target.value)} />
+                <TextField id="outlined-basic" label="Designation" size='small' variant="outlined" name='Designation' value={employee.Designation} onChange={inputEvent} />
+                <TextField id="outlined-basic" label="Department" size='small' variant="outlined" name='Dept' value={employee.Dept} onChange={inputEvent} />
                 
             </div>
             <div className='joining'>
                 <p>Date of entering the Central Government Service/Date of Joining with IIT Ropar:</p>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker label="Date of Joining" format="dd-mm-yyyy" value={JoinDate} onChange={(newValue) => {setJoinDate(newValue);}}
+                    <DatePicker label="Date of Joining" format="dd-mm-yyyy" name='JoinDate' value={employee.JoinDate} onChange={(newValue) => {setemployee({...employee,JoinDate:newValue})}}
                         renderInput={(params) => <TextField size='small' {...params} />}
                     />
                 </LocalizationProvider>
                 <p>Band Pay + AGP/GP:</p>
-                <TextField id="outlined-basic" label="₹" size='small' variant="outlined" value={BandPay} onChange={(e) => setBandPay(e.target.value)}/>
+                <TextField id="outlined-basic" label="₹" size='small' variant="outlined" name='BandPay' value={employee.BandPay} onChange={inputEvent}/>
             </div>
         </div>
+
+
+
+        {/* LTC Details */}
+
+        <div className='ltc_details'>
+            <h3 className='heading'>LTC Details</h3>
+            <div className='leave'>
+                <p>Leave Required:</p>
+                <TextField id="outlined-basic" label="Nature" size='small' variant="outlined" value={Nature} />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        label="From"
+                        value={from_value}
+                        onChange={(newValue) => {
+                        setfromValue(newValue);
+                        }}
+                        renderInput={(params) => <TextField size='small' {...params} />}
+                    />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        label="To"
+                        value={to_value}
+                        onChange={(newValue) => {
+                        settoValue(newValue);
+                        }}
+                        renderInput={(params) => <TextField size='small' {...params} />}
+                    />
+                </LocalizationProvider>
+                <TextField id="outlined-basic" label="No. Of Days" size='small' variant="outlined"  />
+            </div>
+            <div className='spouse'>
+                <p >Whether spouse is employed, if yes whether entitled to LTC:</p>
+                <FormControl style={{width: "20%",paddingTop: "0.5%"}}>
+                    <InputLabel id="select-label">Select</InputLabel>
+                    <Select
+                    labelId="select-label"
+                    id="simple-select"
+                    value={status}
+                    label="Select"
+                    size='small'
+                    onChange={handleChange}
+                    >
+                    <MenuItem value={1}>Yes, Entitled to LTC</MenuItem>
+                    <MenuItem value={2}>Yes, Not Entitled to LTC</MenuItem>
+                    <MenuItem value={3}>No</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div className='journey_date'>
+                <div className='self'>
+                    <p>Proposed dates of Journey:</p>
+                    <p>Self:</p>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        label="Outward Journey"
+                        value={sj_from_value}
+                        onChange={(newValue) => {
+                        setfromValue(newValue);
+                        }}
+                        renderInput={(params) => <TextField size='small' {...params} />}
+                    />
+                    </LocalizationProvider>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Inward Journey"
+                            value={sj_to_value}
+                            onChange={(newValue) => {
+                            settoValue(newValue);
+                            }}
+                            renderInput={(params) => <TextField size='small' {...params} />}
+                        />
+                    </LocalizationProvider>
+                    </div>
+                <div className='family'>
+                    <p>Family:</p>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        label="Outward Journey"
+                        value={fj_from_value}
+                        onChange={(newValue) => {
+                        setfromValue(newValue);
+                        }}
+                        renderInput={(params) => <TextField size='small' {...params} />}
+                    />
+                    </LocalizationProvider>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Inward Journey"
+                            value={fj_to_value}
+                            onChange={(newValue) => {
+                            settoValue(newValue);
+                            }}
+                            renderInput={(params) => <TextField size='small' {...params} />}
+                        />
+                    </LocalizationProvider>
+                </div>
+            </div>
+            <div className='town'>
+                <p>Home Town as recorded in the Service Book:</p>
+                <TextField id="outlined-basic" label="Hometown Name" size='small' variant="outlined" />
+            </div>
+            <div className='nature_ltc'>
+                <p>Nature of LTC to be availed, Home Town/Anywhere in India with Block Year:</p>
+                <TextField id="outlined-basic" label="Nature of LTC" size='small' variant="outlined" />
+            </div>
+            <div className='place_visited'>
+                <p>If, anywhere in India, the place to be visited:</p>
+                <TextField id="outlined-basic" label="Place Name" size='small' variant="outlined" />
+            </div>
+            <div className='fare'>
+                <p>Estimated fare of entitled class from the headquarter to Home Town/Place of visit by shortest route:</p>
+                <TextField id="outlined-basic" label="₹" size='small' variant="outlined" />
+                <Button variant="contained" component="span">Upload</Button>
+            </div>
+            <div className='person_details'>
+                <Table columns={columns} data = {tableData} 
+                    editable = {{
+                        onRowAdd:(newRow)=>new Promise((resolve,reject)=>{
+                            setTableData([...tableData,newRow])
+                            resolve()
+                        }),
+                        onRowUpdate:(newRow,oldRow)=>new Promise((resolve,reject)=>{
+                            const updatedData = [...tableData]
+                            updatedData[oldRow.tableData.id] = newRow
+                            setTableData(updatedData)
+                            resolve()
+                        }),
+                        onRowDelete:(selectedRow)=>new Promise((resolve,reject)=>{
+                            const updatedData = [...tableData]
+                            updatedData.splice(selectedRow.tableData.id,1)
+                            setTableData(updatedData)
+                            resolve()
+                        })
+                    }}
+                    options={{search : false,addRowPosition:"first", actionsColumnIndex:-1, paging:false,headerStyle:{fontSize:"90%"},style:{fontSize:"0%"}}}
+                    title = {<h3>Person(s) in respect of whom LTC is proposed to be availed:</h3>} /> 
+            </div>
+            <div className='advance'>
+                <p>Advance Required:</p>
+                <FormControl  style={{width: "7%",paddingTop: "0.5%"}}>
+                    <InputLabel id="select-label_back">Yes/No</InputLabel>
+                    <Select
+                    labelId="select-label_back"
+                    id="simple-select_back"
+                    value={back_status}
+                    label="Yes/No"
+                    size='small'
+                    onChange={back_handleChange}
+                    >
+                    <MenuItem value={1}>Yes</MenuItem>
+                    <MenuItem value={2}>No</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div className='encashment'>
+                <p>Encashment of earned leave required:</p>
+                <FormControl style={{width: "7%",paddingTop: "0.5%"}}>
+                    <InputLabel id="select-label_back">Yes/No</InputLabel>
+                    <Select
+                    labelId="select-label_back"
+                    id="simple-select_back"
+                    value={back_status}
+                    label="Yes/No"
+                    size='small'
+                    onChange={back_handleChange}
+                    >
+                    <MenuItem value={1}>Yes</MenuItem>
+                    <MenuItem value={2}>No</MenuItem>
+                    </Select>
+                </FormControl>
+                <p>If Yes:</p>
+                <TextField id="outlined-basic" label="No. of Days" size='small' variant="outlined" />
+            </div>
+            <div className='undertaking'>
+                <Checkbox checked={checked} onChange={check_handleChange} inputProps={{ 'aria-label': 'controlled' }}/>
+                I undertake (a) to produce the tickets for the journey within ten days of receipt of the advance (b) to refund the entire 
+                advance in lump sum, in the event of cancellation of the journey within two months from the date of drawl of the advance or 
+                failure to produce the tickets within 10 days of drawl the advance (c) to travel by Air/Rail/Road as per my entitlement and
+                as per GOI LTC rules or specific rules as adopted by the Institute (d) to refund the excess advance drawn, if any, within 7
+                working days of completion of the journey (e) to submit necessary bills, money receipts and other documents** as required 
+                under the Rules and Regulations of the Institute within one month (where advance is drawn) / three months (where no advance 
+                is drawn), from the date of completion of the journey. I will communicate to the competent authority about any change of 
+                declared place of visit or change of dates before the commencement of the journey.
+            </div>
+            <h3 style={{marginBottom: "0"}}>Certified that:</h3>
+            <div className='certification'>
+                <ol type="1">
+                    <li>The information, as given above is true to the best of my knowledge and belief; and</li>
+                    <li>My spouse is not employed in Government service / my spouse is employed in government service and the concession has not been availed of by him/her separately of himself/herself or for any of the family members for the <TextField id="standard-basic" size='small' label="" variant="standard" style={{width: "100px"}}/>block year.</li>
+                </ol> 
+            </div>
+            <div className='sign'>
+                <b>Signature of the Applicant with date</b>
+            </div>
+        </div>
+
+
+        <button onClick={func}>PRINT</button>
     </>
     )
 }

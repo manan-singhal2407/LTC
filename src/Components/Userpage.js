@@ -1,40 +1,28 @@
-import React,{useRef} from 'react'
-// import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import { border, fontSize } from '@mui/system';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-import Ltc from './Ltc';
-import Navbar from './nav';
-import {useReactToPrint} from "react-to-print"
-import ReactDOMServer from "react-dom/server";
+import React from 'react'
 import jsPDF from 'jspdf';
-import FormPage from './Form';
-
+import './Userpage.css';
+import Employee from './Employee';
+import Ltc from './Ltc';
+import Navbar from "./nav"
+import { useState } from 'react';
 
 
 export default function Userpage() {
-    const [value, setValue] =React.useState(null);
-    // const [value, setValue] =useState(null);
-    // const [value, setValue] =useState(null);
-    // const [value, setValue] =useState(null);
-    // const [value, setValue] =useState(null);
-    // const [value, setValue] =useState(null);
-    // const [value, setValue] =useState(null);
-    // const [value, setValue] =useState(null);
-    const func=()=>{
-        var doc = new jsPDF('landscape','px','a4','false');
-        doc.text("hello",20,20);
-        doc.save("name.pdf")
-    }
 
+  let t;
+  
+  let getData=(data)=>{
+    t={...data}
+    console.log(t);
+  }
   return (
     <>
-    <FormPage/>
-    <button onClick={func}>Print</button>
+      <Navbar/>
+      <div className="content">
+        <Employee func={getData}/>
+      </div>
     </>
-  )
+    )
 }
 
 

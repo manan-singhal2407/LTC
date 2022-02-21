@@ -10,9 +10,32 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Table from 'material-table';
+import { useState } from 'react';
 
 
 function Ltc(){
+
+
+    const [LTC,setLTC]=useState({
+        Nature:"",
+        from_value:"",
+        to_value:"",
+        status:"",
+        back_status:"",
+        sj_from_value:"",
+        sj_to_value:"",
+        fj_from_value:"",
+        fj_to_value:"",
+        checked:"",
+    })
+
+
+
+
+
+    const[Nature,setNature]=React.useState("");
+
+
     const [from_value, setfromValue] = React.useState(null);
     const [to_value, settoValue] = React.useState(null);
 
@@ -56,7 +79,7 @@ function Ltc(){
             <h3 className='heading'>LTC Details</h3>
             <div className='leave'>
                 <p>Leave Required:</p>
-                <TextField id="outlined-basic" label="Nature" size='small' variant="outlined" />
+                <TextField id="outlined-basic" label="Nature" size='small' variant="outlined" value={Nature} />
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="From"
@@ -77,7 +100,7 @@ function Ltc(){
                         renderInput={(params) => <TextField size='small' {...params} />}
                     />
                 </LocalizationProvider>
-                <TextField id="outlined-basic" label="No. Of Days" size='small' variant="outlined" />
+                <TextField id="outlined-basic" label="No. Of Days" size='small' variant="outlined"  />
             </div>
             <div className='spouse'>
                 <p >Whether spouse is employed, if yes whether entitled to LTC:</p>
