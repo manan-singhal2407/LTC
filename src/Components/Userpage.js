@@ -2,7 +2,6 @@ import React from 'react'
 import jsPDF from 'jspdf';
 import './Userpage.css';
 import Employee from './Employee';
-import Ltc from './Ltc';
 import Navbar from "./nav"
 import { useState } from 'react';
 
@@ -10,17 +9,31 @@ import { useState } from 'react';
 export default function Userpage() {
 
   let t;
+  let tt;
+  let ttt;
   
-  let getData=(data)=>{
-    t={...data}
-    console.log(t);
+  const getData=(data1,data2,data3)=>{
+    t={...data1}
+    tt={...data2}
+    ttt={...data3}
+    console.log(tt);
   }
+
+  const funct=()=> {
+    console.log(t,tt,ttt)
+  }
+
+
+
+
   return (
     <>
       <Navbar/>
       <div className="content">
-        <Employee func={getData}/>
+        <Employee func={getData} />
       </div>
+      <button onClick={funct}>Print</button>
+
     </>
     )
 }
