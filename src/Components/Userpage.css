@@ -120,3 +120,8 @@
   width: 100%;
   margin-bottom: 5%;
 }
+.MuiList-root{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
