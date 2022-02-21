@@ -84,28 +84,24 @@ function Ltc(){
             <h3 className='heading'>LTC Details</h3>
             <div className='leave'>
                 <p>Leave Required:</p>
-                <TextField id="outlined-basic" label="Nature" size='small' variant="outlined" value={Nature} />
+                <TextField id="outlined-basic" label="Nature" size='small' variant="outlined" value={LTC.Nature} onChange={inputEvent} />
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="From"
-                        value={from_value}
-                        onChange={(newValue) => {
-                        setfromValue(newValue);
-                        }}
+                        value={LTC.from_value}
+                        onChange={inputEvent}
                         renderInput={(params) => <TextField size='small' {...params} />}
                     />
                 </LocalizationProvider>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="To"
-                        value={to_value}
-                        onChange={(newValue) => {
-                        settoValue(newValue);
-                        }}
+                        value={LTC.to_value}
+                        onChange={inputEvent}
                         renderInput={(params) => <TextField size='small' {...params} />}
                     />
                 </LocalizationProvider>
-                <TextField id="outlined-basic" label="No. Of Days" size='small' variant="outlined"  />
+                <TextField id="outlined-basic" label="No. Of Days" size='small' variant="outlined" value={LTC.days} onChange={inputEvent} />
             </div>
             <div className='spouse'>
                 <p >Whether spouse is employed, if yes whether entitled to LTC:</p>
@@ -114,10 +110,10 @@ function Ltc(){
                     <Select
                     labelId="select-label"
                     id="simple-select"
-                    value={status}
+                    value={LTC.spouse}
                     label="Select"
                     size='small'
-                    onChange={handleChange}
+                    onChange={inputEvent}
                     >
                     <MenuItem value={1}>Yes, Entitled to LTC</MenuItem>
                     <MenuItem value={2}>Yes, Not Entitled to LTC</MenuItem>
@@ -132,20 +128,16 @@ function Ltc(){
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="Outward Journey"
-                        value={sj_from_value}
-                        onChange={(newValue) => {
-                        setfromValue(newValue);
-                        }}
+                        value={LTC.sj_from_value}
+                        onChange={inputEvent}
                         renderInput={(params) => <TextField size='small' {...params} />}
                     />
                     </LocalizationProvider>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Inward Journey"
-                            value={sj_to_value}
-                            onChange={(newValue) => {
-                            settoValue(newValue);
-                            }}
+                            value={LTC.sj_to_value}
+                            onChange={inputEvent}
                             renderInput={(params) => <TextField size='small' {...params} />}
                         />
                     </LocalizationProvider>
@@ -155,20 +147,16 @@ function Ltc(){
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="Outward Journey"
-                        value={fj_from_value}
-                        onChange={(newValue) => {
-                        setfromValue(newValue);
-                        }}
+                        value={LTC.fj_from_value}
+                        onChange={inputEvent}
                         renderInput={(params) => <TextField size='small' {...params} />}
                     />
                     </LocalizationProvider>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Inward Journey"
-                            value={fj_to_value}
-                            onChange={(newValue) => {
-                            settoValue(newValue);
-                            }}
+                            value={LTC.fj_to_value}
+                            onChange={inputEvent}
                             renderInput={(params) => <TextField size='small' {...params} />}
                         />
                     </LocalizationProvider>
@@ -176,19 +164,19 @@ function Ltc(){
             </div>
             <div className='town'>
                 <p>Home Town as recorded in the Service Book:</p>
-                <TextField id="outlined-basic" label="Hometown Name" size='small' variant="outlined" />
+                <TextField id="outlined-basic" label="Hometown Name" size='small' variant="outlined" value={LTC.town} onChange={inputEvent}/>
             </div>
             <div className='nature_ltc'>
                 <p>Nature of LTC to be availed, Home Town/Anywhere in India with Block Year:</p>
-                <TextField id="outlined-basic" label="Nature of LTC" size='small' variant="outlined" />
+                <TextField id="outlined-basic" label="Nature of LTC" size='small' variant="outlined" value={LTC.nature_ltc} onChange={inputEvent}/>
             </div>
             <div className='place_visited'>
                 <p>If, anywhere in India, the place to be visited:</p>
-                <TextField id="outlined-basic" label="Place Name" size='small' variant="outlined" />
+                <TextField id="outlined-basic" label="Place Name" size='small' variant="outlined" value={LTC.visit} onChange={inputEvent}/>
             </div>
             <div className='fare'>
                 <p>Estimated fare of entitled class from the headquarter to Home Town/Place of visit by shortest route:</p>
-                <TextField id="outlined-basic" label="₹" size='small' variant="outlined" />
+                <TextField id="outlined-basic" label="₹" size='small' variant="outlined" value={LTC.fare} onChange={inputEvent}/>
                 <Button variant="contained" component="span">Upload</Button>
             </div>
             <div className='person_details'>
@@ -221,10 +209,10 @@ function Ltc(){
                     <Select
                     labelId="select-label_back"
                     id="simple-select_back"
-                    value={back_status}
+                    value={LTC.advance}
                     label="Yes/No"
                     size='small'
-                    onChange={back_handleChange}
+                    onChange={inputEvent}
                     >
                     <MenuItem value={1}>Yes</MenuItem>
                     <MenuItem value={2}>No</MenuItem>
@@ -238,20 +226,20 @@ function Ltc(){
                     <Select
                     labelId="select-label_back"
                     id="simple-select_back"
-                    value={back_status}
+                    value={LTC.encash}
                     label="Yes/No"
                     size='small'
-                    onChange={back_handleChange}
+                    onChange={inputEvent}
                     >
                     <MenuItem value={1}>Yes</MenuItem>
                     <MenuItem value={2}>No</MenuItem>
                     </Select>
                 </FormControl>
                 <p>If Yes:</p>
-                <TextField id="outlined-basic" label="No. of Days" size='small' variant="outlined" />
+                <TextField id="outlined-basic" label="No. of Days" size='small' variant="outlined" value={LTC.encash_days} onChange={inputEvent}/>
             </div>
             <div className='undertaking'>
-                <Checkbox checked={checked} onChange={check_handleChange} inputProps={{ 'aria-label': 'controlled' }}/>
+                <Checkbox checked={LTC.checked} onChange={inputEvent} inputProps={{ 'aria-label': 'controlled' }}/>
                 I undertake (a) to produce the tickets for the journey within ten days of receipt of the advance (b) to refund the entire 
                 advance in lump sum, in the event of cancellation of the journey within two months from the date of drawl of the advance or 
                 failure to produce the tickets within 10 days of drawl the advance (c) to travel by Air/Rail/Road as per my entitlement and
@@ -265,7 +253,7 @@ function Ltc(){
             <div className='certification'>
                 <ol type="1">
                     <li>The information, as given above is true to the best of my knowledge and belief; and</li>
-                    <li>My spouse is not employed in Government service / my spouse is employed in government service and the concession has not been availed of by him/her separately of himself/herself or for any of the family members for the <TextField id="standard-basic" size='small' label="" variant="standard" style={{width: "100px"}}/>block year.</li>
+                    <li>My spouse is not employed in Government service / my spouse is employed in government service and the concession has not been availed of by him/her separately of himself/herself or for any of the family members for the <TextField id="standard-basic" size='small' label="" variant="standard" style={{width: "100px"}} value={LTC.certi} onChange={inputEvent}/>block year.</li>
                 </ol> 
             </div>
             <div className='sign'>
