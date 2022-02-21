@@ -20,13 +20,21 @@ function Ltc(){
         Nature:"",
         from_value:"",
         to_value:"",
-        status:"",
-        back_status:"",
+        days:"",
+        spouse:"",
         sj_from_value:"",
         sj_to_value:"",
         fj_from_value:"",
         fj_to_value:"",
+        town:"",
+        nature_ltc:"",
+        visit:"",
+        fare:"",
+        advance:"",
+        encash:"",
+        encash_days:"",
         checked:"",
+        certi:""
     })
 
 
