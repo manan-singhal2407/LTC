@@ -43,15 +43,15 @@ export default function Userpage() {
     doc.setFontSize(21);
     doc.setTextColor(10, 10, 10);
 
-    doc.setFont("helvetica", "normal");
-    //doc.text("भारतीय प्रौद्योगिकी संस्थान रोपड़", width-20, 25, "right");
     
+    //doc.text("भारतीय प्रौद्योगिकी संस्थान रोपड़", width-20, 25, "right");
+    doc.setFont("helvetica", "bold");
     doc.text("Indian Institute of Technology Ropar", width-20, 50, "right");
     doc.setLineWidth(1.5);
     doc.line(20, 55, width-20, 55);
     doc.setFontSize(9);
     doc.text("APPLICATION FOR LEAVE TRAVEL CONCESSION", width/2, 64, "center");
-    
+    doc.setFont("helvetica", "normal");
     doc.setLineWidth(0.5);
     doc.line(widthSideSpace, tableStartYAxis, width-widthSideSpace, tableStartYAxis);
     doc.line(widthSideSpace, tableStartYAxis, widthSideSpace, heightBottomSpace);
@@ -71,9 +71,7 @@ export default function Userpage() {
 
     doc.text("3.", widthSideSpace + widthOfSNoBox/2, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (2.5)*heightOfABoxWrtToOneLinePadding, "center");
     doc.text("Date of entering the Central Government \nService/Date of Joining with IIT Ropar", 5 + widthSideSpace + widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 2.5 + 2*heightOfABoxWrtToOneLinePadding, { lineHeightFactor : 1.4});
-    if (employee.JoinDate === null) {
-      doc.text(JSON.stringify(employee.JoinDate).substring(1,11).split("-").reverse().join("/"), width/2-15, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (2.5)*heightOfABoxWrtToOneLinePadding, "left");
-    }
+    doc.text(JSON.stringify(employee.JoinDate).substring(1,11).split("-").reverse().join("/"), width/2-15, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (2.5)*heightOfABoxWrtToOneLinePadding, "left");
     doc.line(widthSideSpace, tableStartYAxis + 4*heightOfABoxWrtToOneLinePadding, width-widthSideSpace, tableStartYAxis + 4*heightOfABoxWrtToOneLinePadding);
 
     doc.text("4.", widthSideSpace + widthOfSNoBox/2, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (4)*heightOfABoxWrtToOneLinePadding, "center");
@@ -93,7 +91,24 @@ export default function Userpage() {
 
     doc.text("7.", widthSideSpace + widthOfSNoBox/2, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (10)*heightOfABoxWrtToOneLinePadding, "center");
     doc.text("Proposed dates of Journey", 5 + widthSideSpace + widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 10*heightOfABoxWrtToOneLinePadding);
-    doc.text("Mr Manan Singhal 7340334826", width/2-15, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (10)*heightOfABoxWrtToOneLinePadding, "left");
+    doc.line((width/2-20) + (width/2+20-widthSideSpace)/3, tableStartYAxis + 9*heightOfABoxWrtToOneLinePadding, (width/2-20) + (width/2+20-widthSideSpace)/3, tableStartYAxis + 12*heightOfABoxWrtToOneLinePadding);
+    doc.line((width/2-20) + 2*(width/2+20-widthSideSpace)/3, tableStartYAxis + 9*heightOfABoxWrtToOneLinePadding, (width/2-20) + 2*(width/2+20-widthSideSpace)/3, tableStartYAxis + 12*heightOfABoxWrtToOneLinePadding);
+    doc.line((width/2-20), tableStartYAxis + 10*heightOfABoxWrtToOneLinePadding, width - widthSideSpace, tableStartYAxis + 10*heightOfABoxWrtToOneLinePadding);
+    doc.line((width/2-20), tableStartYAxis + 11*heightOfABoxWrtToOneLinePadding, width - widthSideSpace, tableStartYAxis + 11*heightOfABoxWrtToOneLinePadding);
+
+    doc.text("Self", 5 + (width/2-20), tableStartYAxis + heightOfABoxWrtToOneLine/2 + 10*heightOfABoxWrtToOneLinePadding);
+    doc.text("Family", 5 + (width/2-20), tableStartYAxis + heightOfABoxWrtToOneLine/2 + 11*heightOfABoxWrtToOneLinePadding);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8);
+    doc.text("Date of Outward journey", (width/2-20) + (width/2+20-widthSideSpace)/2, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 9*heightOfABoxWrtToOneLinePadding, "center");
+    doc.text("Date of Inward journey", (width/2-20) + 5*(width/2+20-widthSideSpace)/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 9*heightOfABoxWrtToOneLinePadding, "center");
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.text("Family", (width/2-20) + (width/2+20-widthSideSpace)/2, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 10*heightOfABoxWrtToOneLinePadding, "center");
+    doc.text("Self", (width/2-20) + (width/2+20-widthSideSpace)/2, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 11*heightOfABoxWrtToOneLinePadding, "center");
+    doc.text("Self", (width/2-20) + 5*(width/2+20-widthSideSpace)/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 10*heightOfABoxWrtToOneLinePadding, "center");
+    doc.text("Family", (width/2-20) + 5*(width/2+20-widthSideSpace)/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + 11*heightOfABoxWrtToOneLinePadding, "center");
+
     doc.line(widthSideSpace, tableStartYAxis + 12*heightOfABoxWrtToOneLinePadding, width-widthSideSpace, tableStartYAxis + 12*heightOfABoxWrtToOneLinePadding);
 
     doc.text("8.", widthSideSpace + widthOfSNoBox/2, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (12)*heightOfABoxWrtToOneLinePadding, "center");
@@ -121,17 +136,18 @@ export default function Userpage() {
 
     doc.line(widthSideSpace + widthOfSNoBox, tableStartYAxis + 19*heightOfABoxWrtToOneLinePadding, width-widthSideSpace, tableStartYAxis + 19*heightOfABoxWrtToOneLinePadding);
     doc.line(widthSideSpace + widthOfSNoBox, tableStartYAxis + 22*heightOfABoxWrtToOneLinePadding, width-widthSideSpace, tableStartYAxis + 22*heightOfABoxWrtToOneLinePadding);
+    doc.setFont("helvetica", "bold");
     doc.text("S\nNo.", 5 + widthSideSpace + widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding);
-    doc.text("Name", 5 + widthSideSpace + 2*widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding);
-    doc.text("Age", 5 + widthSideSpace + 2*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding);
-    doc.text("Relationship", 5 + widthSideSpace + 3*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding);
+    doc.text("Name", 2 + widthSideSpace + 2*widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding);
+    doc.text("Age", 2 + widthSideSpace + 2*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding);
+    doc.text("Relationship", 2 + widthSideSpace + 3*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding);
     doc.text("Travelling(Place)", width/2+15+50, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding, "center");
     doc.text("Mode of travel", width-40-widthSideSpace, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (19)*heightOfABoxWrtToOneLinePadding, "center");
     // width - width/2 + 20 - 40 - widthSideSpace
     doc.text("From", width/2-20 + (0.75)*(width - width/2 + 20 - 40 - widthSideSpace)/5, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (20)*heightOfABoxWrtToOneLinePadding, "center");
     doc.text("To", width/2-20 + (2.25)*(width - width/2 + 20 - 40 - widthSideSpace)/5, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (20)*heightOfABoxWrtToOneLinePadding, "center");
     doc.text("Back\n(Yes/No)", width/2-20 + (3.5)*(width - width/2 + 20 - 40 - widthSideSpace)/5, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (20)*heightOfABoxWrtToOneLinePadding, "center");
-    
+    doc.setFont("helvetica", "normal");
     doc.line(widthSideSpace + 2*widthOfSNoBox, tableStartYAxis + (19)*heightOfABoxWrtToOneLinePadding, widthSideSpace + 2*widthOfSNoBox, tableStartYAxis + (22+ltc.numRows)*heightOfABoxWrtToOneLinePadding);
     doc.line(widthSideSpace + 2*widthOfSNoBox + width/6, tableStartYAxis + (19)*heightOfABoxWrtToOneLinePadding, widthSideSpace + 2*widthOfSNoBox + width/6, tableStartYAxis + (22+ltc.numRows)*heightOfABoxWrtToOneLinePadding);
     doc.line(widthSideSpace + 3*widthOfSNoBox + width/6, tableStartYAxis + (19)*heightOfABoxWrtToOneLinePadding, widthSideSpace + 3*widthOfSNoBox + width/6, tableStartYAxis + (22+ltc.numRows)*heightOfABoxWrtToOneLinePadding);
@@ -143,10 +159,9 @@ export default function Userpage() {
     doc.line(width/2-20, tableStartYAxis + 20*heightOfABoxWrtToOneLinePadding, width/2-20 + (4)*(width - width/2 + 20 - 40 - widthSideSpace)/5, tableStartYAxis + 20*heightOfABoxWrtToOneLinePadding);
     for (let i=0; i < ltc.numRows; i++) {
       doc.text(ltc_table[i].serial, 5 + widthSideSpace + widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding);
-      doc.text(ltc_table[i].name, 5 + widthSideSpace + 2*widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding);
-      doc.text(ltc_table[i].age, 5 + widthSideSpace + 2*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding);
-      doc.text(ltc_table[i].relation, 5 + widthSideSpace + 3*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding);
-      // width - width/2 + 20 - 40 - widthSideSpace
+      doc.text(ltc_table[i].name, 2 + widthSideSpace + 2*widthOfSNoBox, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding);
+      doc.text(ltc_table[i].age, 2 + widthSideSpace + 2*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 +(22+i)*heightOfABoxWrtToOneLinePadding);
+      doc.text(ltc_table[i].relation, 2+widthSideSpace + 3*widthOfSNoBox + width/6, tableStartYAxis + heightOfABoxWrtToOneLine/2 +(22+i)*heightOfABoxWrtToOneLinePadding);
       doc.text(ltc_table[i].tfrom, width/2-20 + (0.75)*(width - width/2 + 20 - 40 - widthSideSpace)/5, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding, "center");
       doc.text(ltc_table[i].tto, width/2-20 + (2.25)*(width - width/2 + 20 - 40 - widthSideSpace)/5, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding, "center");
       doc.text(ltc_table[i].tback, width/2-20 + (3.5)*(width - width/2 + 20 - 40 - widthSideSpace)/5, tableStartYAxis + heightOfABoxWrtToOneLine/2 + (22+i)*heightOfABoxWrtToOneLinePadding, "center");
