@@ -10,38 +10,52 @@ import Navbar from './nav';
 
 const LoginBox = () => {
 
+
+    const [AlertText,setAlertText]=useState("");
+
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
 
     const navigate = useNavigate();
-
     const logUser=async()=>{
-        try{
-            const user = await signInWithEmailAndPassword(auth,email,password)
-            .then(() => {
-                if (getAuth().currentUser.emailVerified) {
-                    navigate("/userpage")
-                    console.log("Email verified send to next page")
-                }
-                else {
-                    sendEmailVerification(getAuth().currentUser)
-                    .then(() => {
-                        console.log("Email verification link send")
-                    })
-                    .catch((error) => {
-                        console.log("Error: In verification link:", error.code, error.message)
-                    });
-                    alert("Email not verified send new snkjhdjvxh")
-                }
-            })
-            .catch((error) => {
-                alert(error.message)
-            });
-            console.log(user)
-        } catch(error){
-                alert(error);
-                console.log(error.message);
-        }
+        const user = await signInWithEmailAndPassword(auth,email,password)
+        .then(() => {
+            if (getAuth().currentUser.emailVerified) {
+                navigate("/userpage")
+                console.log("Email verified send to next page")
+            }
+            else {
+                sendEmailVerification(getAuth().currentUser)
+                .then(() => {
+                    setAlertText("Email not verified.Verification link send");
+                    console.log("Email verification link send")
+                })
+                .catch((error) => {
+                    console.log("Error: In verification link:", error.code, error.message)
+                });
+                alert("Email not verified send new snkjhdjvxh")
+            }
+        })
+        .catch((error) => {
+            if(error.message==="Firebase: Error (auth/invalid-email)."){
+                setAlertText("Invalid Email")
+            }
+            else if(error.message==="Firebase: Error (auth/wrong-password)."){
+                setAlertText("Wrong Password")
+            }
+            else if(error.message==="Firebase: Error (auth/user-not-found)."){
+                setAlertText("User not found")
+            }
+            else if(error.message==="Firebase: Error (auth/internal-error)."){
+                setAlertText("Internal Error")
+            }
+            else{
+                setAlertText(error.message);
+            }
+            
+            
+            // alert(error.message)
+        });
     }
 
     const showPass = ()=>{
@@ -75,7 +89,14 @@ const LoginBox = () => {
                 <div className='buttondiv'>
                         <button className="button" type='submit'  onClick={logUser}>Login</button>
                 </div>
+
+                {(AlertText!=="")
+                ?<div className='wrongtext'>
+                    <p>{AlertText}</p>
+                </div>:null}
                 
+
+
                 <div className='fpassdiv'>
                 <Link className='fpass' to="/forgotpassword">forgot password?</Link> 
                 </div>

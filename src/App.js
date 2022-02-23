@@ -2,16 +2,17 @@ import React from 'react'
 import LoginBox from"./Components/Loginbox"
 import RegisterBox from "./Components/Registerbox"
 import ForgotPassBox from './Components/ForgotPassBox';
-import Userpage from "./Components/Userpage"
+import NewAppl from "./Components/NewApplication"
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import Navbar from './Components/nav';
-
-
+import HomePage from "./Components/HomePage"
 function App() {
+
+
+  
   return (
     <>
     <Router>
@@ -19,7 +20,9 @@ function App() {
         <Route  path="/" element={<LoginBox/>}/>
         <Route  path="/register" element={<RegisterBox />}/>
         <Route  path="/forgotpassword" element={<ForgotPassBox />}/>
-        <Route path="/userpage" element={<Userpage/>}/>
+        <Route  path="/userpage" element={<HomePage/>}>
+        <Route  path="newApplication" element={<NewAppl/>}/>
+        </Route>
       </Routes>
     </Router>
     </>

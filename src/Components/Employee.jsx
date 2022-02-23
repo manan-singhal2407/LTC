@@ -12,8 +12,10 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Table from 'material-table';
 import { useState } from 'react';
+import {useNavigate} from "react-router-dom"
 
 function Employee(props){
+    const navigate = useNavigate();
 
     const [LTC,setLTC]=useState({
         Nature:"",
@@ -76,8 +78,16 @@ function Employee(props){
         setemployee({...employee,[e.target.name]:e.target.value});
     }
     
-    const func=()=>{
-        props.func(employee,tableData,LTC);
+    const[trig,settrig]=useState(0);
+
+    const submit=()=>{
+        settrig(1);
+        props.getdata(employee,tableData,LTC);
+    }
+
+    const printdoc=()=>{
+        props.printForm();
+        navigate("/userpage")
     }
 
     return(
@@ -166,9 +176,9 @@ function Employee(props){
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="From"
-                        name="s_to"
-                        value={LTC.s_to}
-                        onChange={(newValue) => {setLTC({...LTC,s_to:newValue})}}
+                        name="s_from"
+                        value={LTC.s_from}
+                        onChange={(newValue) => {setLTC({...LTC,s_from:newValue})}}
                         renderInput={(params) => <TextField size='small' {...params} />}
                     />
                     </LocalizationProvider>
@@ -350,10 +360,15 @@ function Employee(props){
             </div>
         </div>
 
+        {
+            trig===1?<><div className="formsubmit" style={{marginLeft:"33vw",marginRight:"33vw",marginBottom:"4vh"}}>
+                <div className="formsubmittext">Your Form is Submitted!! <button onClick={printdoc}>Print</button></div>
+            </div></>
+            :<button onClick={submit} style={{marginLeft:"45vw",marginRight:"45vw",marginBottom:"4vh"}}>Submit</button>
+        }
         
 
-
-        <button onClick={func}>Submit</button>
+        
     </>
     )
 }
