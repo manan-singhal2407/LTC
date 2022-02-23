@@ -65,12 +65,39 @@
   align-items: flex-start;
   justify-content: space-evenly;
 }
-.name_code,.des_dep,.joining,.leave,.spouse,.town,.nature_ltc,.place_visited,.fare,.advance{
+.name_code,.des_dep,.joining,.spouse,.town,.nature_ltc,.place_visited,.fare,.advance{
   display: flex;
   column-gap: 2%;
   align-items: center;
   width: 100%;
   margin-bottom: 0.5%;
+}
+.leave{
+  display: flex;
+  column-gap: 2%;
+  align-items: center;
+  width: 100%;
+}
+.prefix_suffix{
+  display: flex;
+  flex-direction: row;
+  column-gap: 2%;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5%;
+  padding-left: 9%;
+}
+.prefix{
+  display: flex;
+  flex-direction: row;
+  column-gap: 2%;
+  align-items: center;
+}
+.suffix{
+  display: flex;
+  flex-direction: row;
+  column-gap: 2%;
+  align-items: center;
 }
 .journey_date{
   display: flex;
