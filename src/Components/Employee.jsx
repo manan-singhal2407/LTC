@@ -13,6 +13,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Table from 'material-table';
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
+import { auth } from '../firebase-config';
 
 function Employee(props){
     const navigate = useNavigate();
@@ -87,7 +88,7 @@ function Employee(props){
 
     const printdoc=()=>{
         props.printForm();
-        navigate("/userpage")
+        navigate("/userpage/"+auth.currentUser.uid)
     }
 
     return(

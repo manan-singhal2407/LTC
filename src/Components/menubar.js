@@ -23,7 +23,7 @@ export default function Menubar() {
     <>
       <div className="container-menubar">
         <div class="dropdown-home">
-          <Link to="/userpage" className='home-btn'>Home</Link>
+          <Link to={"/userpage/"+auth.currentUser.uid} className='home-btn'>Home</Link>
           <div class="dropdown-content-home">
             {/* <p className='content-home'>1</p>
             <p className='content-home'>2</p> */}
@@ -42,7 +42,7 @@ export default function Menubar() {
           <button className='appl-btn'>Application</button>
           <div class="dropdown-content-appl">
             <p className='content-appl'>View Previous Applications</p>
-            <Link to="/userpage/newApplication" className='content-appl'>Fresh application</Link>
+            <Link to={"/userpage/"+auth.currentUser.uid+"/newApplication"} className='content-appl'>Fresh application</Link>
           </div>
         </div>  
         <div className="rf"></div>

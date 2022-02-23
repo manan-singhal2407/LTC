@@ -20,7 +20,7 @@ function App() {
         <Route  path="/" element={<LoginBox/>}/>
         <Route  path="/register" element={<RegisterBox />}/>
         <Route  path="/forgotpassword" element={<ForgotPassBox />}/>
-        <Route  path="/userpage" element={<HomePage/>}>
+        <Route  path="/userpage/:id" element={<HomePage/>}>
         <Route  path="newApplication" element={<NewAppl/>}/>
         </Route>
       </Routes>

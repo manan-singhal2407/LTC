@@ -18,10 +18,12 @@ const LoginBox = () => {
 
     const navigate = useNavigate();
     const logUser=async()=>{
-        const user = await signInWithEmailAndPassword(auth,email,password)
+
+        await signInWithEmailAndPassword(auth,email,password)
         .then(() => {
+            console.log(auth.currentUser);
             if (getAuth().currentUser.emailVerified) {
-                navigate("/userpage")
+                navigate("/userpage/"+auth.currentUser.uid)
                 console.log("Email verified send to next page")
             }
             else {
@@ -35,6 +37,8 @@ const LoginBox = () => {
                 });
                 alert("Email not verified send new snkjhdjvxh")
             }
+           
+
         })
         .catch((error) => {
             if(error.message==="Firebase: Error (auth/invalid-email)."){
