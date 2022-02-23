@@ -25,6 +25,10 @@ function Employee(props){
         sj_to_value:null,
         fj_from_value:null,
         fj_to_value:null,
+        p_from:null,
+        p_to:null,
+        s_from:null,
+        s_to:null,
         homeTown:"",
         NatureLTC:"",
         Destination:"",
@@ -134,6 +138,50 @@ function Employee(props){
                     />
                 </LocalizationProvider>
                 <TextField id="outlined-basic" label="No. Of Days" size='small' variant="outlined" name='days' value={LTC.days} onChange={inputEventltc} />
+            </div>
+            <div className='prefix_suffix'>
+                <div className='prefix'>
+                    <p>Prefix:</p>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        label="From"
+                        name="p_from"
+                        value={LTC.p_from}
+                        onChange={(newValue) => {setLTC({...LTC,p_from:newValue})}}
+                        renderInput={(params) => <TextField size='small' {...params} />}
+                    />
+                    </LocalizationProvider>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="To"
+                            name="p_to"
+                            value={LTC.p_to}
+                            onChange={(newValue) => {setLTC({...LTC,p_to:newValue})}}
+                            renderInput={(params) => <TextField size='small' {...params} />}
+                        />
+                    </LocalizationProvider>
+                </div>
+                <div className='suffix'>
+                    <p>Suffix:</p>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                        label="From"
+                        name="s_to"
+                        value={LTC.s_to}
+                        onChange={(newValue) => {setLTC({...LTC,s_to:newValue})}}
+                        renderInput={(params) => <TextField size='small' {...params} />}
+                    />
+                    </LocalizationProvider>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="To"
+                            name="s_to"
+                            value={LTC.s_to}
+                            onChange={(newValue) => {setLTC({...LTC,s_to:newValue})}}
+                            renderInput={(params) => <TextField size='small' {...params} />}
+                        />
+                    </LocalizationProvider>
+                </div>
             </div>
             <div className='spouse'>
                 <p >Whether spouse is employed, if yes whether entitled to LTC:</p>
