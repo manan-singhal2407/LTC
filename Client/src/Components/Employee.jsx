@@ -367,9 +367,6 @@ function Employee(props){
             </div></>
             :<button onClick={submit} style={{marginLeft:"45vw",marginRight:"45vw",marginBottom:"4vh"}}>Submit</button>
         }
-        
-
-        
     </>
     )
 }

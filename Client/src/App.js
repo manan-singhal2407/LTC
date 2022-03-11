@@ -8,7 +8,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import HomePage from "./Components/HomePage"
+import UserPage from "./Components/UserPage"
+import HomePage from './Components/HomePage';
 function App() {
 
 
@@ -20,9 +21,12 @@ function App() {
         <Route  path="/" element={<LoginBox/>}/>
         <Route  path="/register" element={<RegisterBox />}/>
         <Route  path="/forgotpassword" element={<ForgotPassBox />}/>
-        <Route  path="/userpage/:id" element={<HomePage/>}>
-        <Route  path="newApplication" element={<NewAppl/>}/>
+        
+        <Route  path="/userpage/:id/" element={<UserPage/>}>
+          <Route  path="home" element={<HomePage/>}/>
+          <Route  path="newApplication" element={<NewAppl/>}/>
         </Route>
+      
       </Routes>
     </Router>
     </>

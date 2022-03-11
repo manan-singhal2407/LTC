@@ -23,7 +23,7 @@ const LoginBox = () => {
         .then(() => {
             console.log(auth.currentUser);
             if (getAuth().currentUser.emailVerified) {
-                navigate("/userpage/"+auth.currentUser.uid)
+                navigate("/userpage/"+auth.currentUser.uid+"/home")
                 console.log("Email verified send to next page")
             }
             else {

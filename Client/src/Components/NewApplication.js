@@ -2,19 +2,38 @@ import React from 'react'
 import jsPDF from 'jspdf';
 import './NewApplication.css';
 import Employee from './Employee';
+import { async } from '@firebase/util';
 export default function Userpage() {
 
   let employee;
   let ltc_table;
   let ltc;
   
-  const getData=(data1,data2,data3)=>{
+  const getData= async (data1,data2,data3)=>{
     employee={...data1}
     ltc_table={...data2}
     ltc={...data3}
     console.log(ltc_table);
+
+    const e ={
+      "firstname":employee.FirstName,
+      "lastname":employee.LastName,
+      "empcode":parseInt(employee.EmpCode),
+      "desg":employee.Designation,
+      "dept":employee.Dept,
+      "joindate":employee.JoinDate,
+      "bandpay":employee.BandPay
+    }
+    // console.log(e.firstname);
+    console.log(e);
+    const response = await fetch("http://localhost:5000/",{
+      method:"POST",
+      headers: {"Content-type":"application/json"},
+      body: JSON.stringify(e)
+    });
+     
     
-    console.log(ltc.numRows);
+    console.log(response);
   }
 
   const printPDF=()=> {

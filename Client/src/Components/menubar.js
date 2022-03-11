@@ -23,7 +23,7 @@ export default function Menubar() {
     <>
       <div className="container-menubar">
         <div class="dropdown-home">
-          <Link to={"/userpage/"+auth.currentUser.uid} className='home-btn'>Home</Link>
+          <Link to={"/userpage/"+auth.currentUser.uid+"/home"} className='home-btn'>Home</Link>
           <div class="dropdown-content-home">
             {/* <p className='content-home'>1</p>
             <p className='content-home'>2</p> */}
