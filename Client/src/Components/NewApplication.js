@@ -15,6 +15,19 @@ export default function Userpage() {
     ltc={...data3}
     console.log(ltc_table);
 
+    var ltcTable = "";
+    for (let i=0; i < ltc.numRows; i++) {
+      if (i > 0) {
+        ltcTable = ltcTable.concat(",");
+      }
+      ltcTable = ltcTable.concat("(serialNo:", ltc_table[i].serial, ",name:", 
+      ltc_table[i].name, ",age:", ltc_table[i].age, ",relationship:", 
+      ltc_table[i].relation, ",tfrom:", ltc_table[i].tfrom, ",tto:", ltc_table[i].tto, 
+      ",tback:", ltc_table[i].tback, ",mode:", ltc_table[i].mode, ")");
+    }
+
+    console.log(ltcTable);
+
     const e ={
       "firstname":employee.FirstName,
       "lastname":employee.LastName,
@@ -22,7 +35,29 @@ export default function Userpage() {
       "desg":employee.Designation,
       "dept":employee.Dept,
       "joindate":employee.JoinDate,
-      "bandpay":employee.BandPay
+      "bandpay":employee.BandPay,
+      "leaveNature":ltc.Nature,
+      "leaveFrom":ltc.from_value,
+      "leaveTo":ltc.to_value,
+      "leaveNoOfDays":parseInt(ltc.days),
+      "prefixFrom":ltc.p_from,
+      "prefixTo":ltc.p_to,
+      "suffixFrom":ltc.s_from,
+      "suffixTo":ltc.s_to,
+      "spouse":ltc.spouse,
+      "selfFrom":ltc.sj_from_value,
+      "selfTo":ltc.sj_to_value,
+      "familyFrom":ltc.fj_from_value,
+      "familyTo":ltc.fj_to_value,
+      "homeTown":ltc.homeTown,
+      "natureOfLTC":ltc.NatureLTC,
+      "placeName":ltc.Destination,
+      "estimatedFare":parseInt(ltc.EstimatedFare),
+      "advancedRequired":ltc.adv,
+      "encashmentRequired":ltc.encashment,
+      "encashmentDays":parseInt(ltc.Edays),
+      "blockYear":ltc.cert,
+      "ltcTable":ltcTable
     }
     // console.log(e.firstname);
     console.log(e);
