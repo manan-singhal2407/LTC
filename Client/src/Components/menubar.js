@@ -41,7 +41,7 @@ export default function Menubar() {
         <div class="dropdown-appl">
           <button className='appl-btn'>Application</button>
           <div class="dropdown-content-appl">
-            <p className='content-appl'>View Previous Applications</p>
+            <Link to={"/userpage/"+auth.currentUser.uid+"/previousApplication"} className='content-appl'>View Previous application</Link>
             <Link to={"/userpage/"+auth.currentUser.uid+"/newApplication"} className='content-appl'>Fresh application</Link>
           </div>
         </div>  

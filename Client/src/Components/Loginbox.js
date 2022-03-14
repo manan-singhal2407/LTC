@@ -4,6 +4,7 @@ import{getAuth, signInWithEmailAndPassword, sendEmailVerification} from "firebas
 import {auth} from "../firebase-config"
 import './LoginBox.css';
 import Navbar from './nav';
+import { async } from '@firebase/util';
 //import {toast} from 'react-toastify';
 //import 'react-toastify/dist/ReactToastify.css';
 //toast.configure()
@@ -20,10 +21,20 @@ const LoginBox = () => {
     const logUser=async()=>{
 
         await signInWithEmailAndPassword(auth,email,password)
-        .then(() => {
+        .then(async() => {
             console.log(auth.currentUser);
             if (getAuth().currentUser.emailVerified) {
-                navigate("/userpage/"+auth.currentUser.uid+"/home")
+
+                
+                const response = await fetch("http://127.0.0.1:5000/getrole/"+email)
+                const  data =await response.json()
+                console.log(data)
+                if(data ==="admin"){
+                    navigate("/adminpage/"+auth.currentUser.uid);
+                }
+                else{
+                    navigate("/userpage/"+auth.currentUser.uid+"/home")
+                }
                 console.log("Email verified send to next page")
             }
             else {

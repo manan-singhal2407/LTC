@@ -26,8 +26,6 @@ export default function Userpage() {
       ",tback:", ltc_table[i].tback, ",mode:", ltc_table[i].mode, ")");
     }
 
-    console.log(ltcTable);
-
     const e ={
       "firstname":employee.FirstName,
       "lastname":employee.LastName,

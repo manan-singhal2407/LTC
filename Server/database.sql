@@ -31,5 +31,16 @@ CREATE TABLE employee(
     encashmentDays INTEGER,
     blockYear VARCHAR,
     ltcTable VARCHAR,
-    requestStatus VARCHAR
+    requestStatus VARCHAR,
+    day_date_submitted VARCHAR
+);
+
+
+CREATE TABLE roles(
+    email VARCHAR,
+    user_type VARCHAR,
+    empcode INTEGER,
+    designation VARCHAR,
+    department VARCHAR,
+    userid VARCHAR, 
 );
