@@ -1,8 +1,5 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import Table from 'material-table';
+import Table from '@mui/material/Table';
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
 import { auth } from '../firebase-config';
@@ -81,9 +78,14 @@ function Employee(props){
     
     const[trig,settrig]=useState(0);
 
-    const submit=()=>{
+
+    const submit=(e)=>{
         settrig(1);
         props.getdata(employee,tableData,LTC);
+        const rr = document.getElementById("sub");
+        rr.remove();
+        document.getElementById("print").disabled = false;
+        e.preventDefault();
     }
 
     const printdoc=()=>{
@@ -93,112 +95,136 @@ function Employee(props){
 
     return(
         <>
+        <form onSubmit={submit}>
         <div className='employee_details'>
             <h3 className='heading'>Employee Details</h3>
             <div className='name_code'>
                 <p>Employee Name & Code:</p>
-                <TextField id="outlined-basic" label="First Name" size='small' variant="outlined" name='FirstName' value={employee.FirstName} onChange={inputEventemp} />
-                <TextField id="outlined-basic" label="Last Name" size='small' variant="outlined" name='LastName' value={employee.LastName} onChange={inputEventemp} />
-                <TextField id="outlined-basic" label="Employee Code" size='small' variant="outlined" name='EmpCode' value={employee.EmpCode} onChange={inputEventemp} />
+                <TextField required id="outlined-basic" label="First Name" size='small' variant="outlined" name='FirstName' value={employee.FirstName} onChange={inputEventemp} />
+                <TextField required id="outlined-basic" label="Last Name" size='small' variant="outlined" name='LastName' value={employee.LastName} onChange={inputEventemp} />
+                <TextField required id="outlined-basic" label="Employee Code" size='small' variant="outlined" name='EmpCode' value={employee.EmpCode} onChange={inputEventemp} />
             </div>
             <div className='des_dep'>
                 <p>Designation & Department:</p>
-                <TextField id="outlined-basic" label="Designation" size='small' variant="outlined" name='Designation' value={employee.Designation} onChange={inputEventemp} />
-                <TextField id="outlined-basic" label="Department" size='small' variant="outlined" name='Dept' value={employee.Dept} onChange={inputEventemp} />
+                <TextField required id="outlined-basic" label="Designation" size='small' variant="outlined" name='Designation' value={employee.Designation} onChange={inputEventemp} />
+                <TextField required id="outlined-basic" label="Department" size='small' variant="outlined" name='Dept' value={employee.Dept} onChange={inputEventemp} />
                 
             </div>
             <div className='joining'>
                 <p>Date of entering the Central Government Service/Date of Joining with IIT Ropar:</p>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker label="Date of Joining" format="dd-mm-yyyy" name='JoinDate' value={employee.JoinDate} onChange={(newValue) => {setemployee({...employee,JoinDate:newValue})}}
-                        renderInput={(params) => <TextField size='small' {...params} />}
-                    />
-                </LocalizationProvider>
+                <TextField required
+                    id="date"
+                    label="Date of joining"
+                    type="date"
+                    size='small'
+                    value={employee.JoinDate}
+                    onChange={inputEventemp}
+                    sx={{ width: 220 }}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                />
                 <p>Band Pay + AGP/GP:</p>
-                <TextField id="outlined-basic" label="₹" size='small' variant="outlined" name='BandPay' value={employee.BandPay} onChange={inputEventemp}/>
+                <TextField required id="outlined-basic" label="₹" size='small' variant="outlined" name='BandPay' value={employee.BandPay} onChange={inputEventemp}/>
             </div>
         </div>
 
 
-
         {/* LTC Details */}
-
 
 
         <div className='ltc_details'>
             <h3 className='heading'>LTC Details</h3>
             <div className='leave'>
                 <p>Leave Required:</p>
-                <TextField id="outlined-basic" label="Nature" size='small' variant="outlined" name='Nature' value={LTC.Nature} onChange={inputEventltc} />
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                        label="From"
-                        name='from_value'
-                        value={LTC.from_value}
-                        onChange={(newValue) => {setLTC({...LTC,from_value:newValue})}}
-                        renderInput={(params) => <TextField size='small' {...params} />}
-                    />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                        label="To"
-                        name='to_value'
-                        value={LTC.to_value}
-                        onChange={(newValue) => {setLTC({...LTC,to_value:newValue})}}
-                        renderInput={(params) => <TextField size='small' {...params} />}
-                    />
-                </LocalizationProvider>
-                <TextField id="outlined-basic" label="No. Of Days" size='small' variant="outlined" name='days' value={LTC.days} onChange={inputEventltc} />
+                <TextField required id="outlined-basic" label="Nature" size='small' variant="outlined" name='Nature' value={LTC.Nature} onChange={inputEventltc} />
+                <TextField required
+                    id="date"
+                    label="From"
+                    type="date"
+                    size='small'
+                    value={LTC.from_value}
+                    onChange={inputEventemp}
+                    sx={{ width: 220 }}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                />
+                <TextField required
+                    id="date"
+                    label="To"
+                    type="date"
+                    size='small'
+                    value={LTC.to_value}
+                    onChange={inputEventemp}
+                    sx={{ width: 220 }}
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                />
+                <TextField required id="outlined-basic" label="No. Of Days" size='small' variant="outlined" name='days' value={LTC.days} onChange={inputEventltc} />
             </div>
             <div className='prefix_suffix'>
                 <div className='prefix'>
                     <p>Prefix:</p>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
+                    <TextField required
+                        id="date"
                         label="From"
-                        name="p_from"
+                        type="date"
+                        size='small'
                         value={LTC.p_from}
-                        onChange={(newValue) => {setLTC({...LTC,p_from:newValue})}}
-                        renderInput={(params) => <TextField size='small' {...params} />}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
                     />
-                    </LocalizationProvider>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                            label="To"
-                            name="p_to"
-                            value={LTC.p_to}
-                            onChange={(newValue) => {setLTC({...LTC,p_to:newValue})}}
-                            renderInput={(params) => <TextField size='small' {...params} />}
-                        />
-                    </LocalizationProvider>
+                    <TextField required
+                        id="date"
+                        label="To"
+                        type="date"
+                        size='small'
+                        value={LTC.p_to}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
                 </div>
                 <div className='suffix'>
                     <p>Suffix:</p>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
+                    <TextField required
+                        id="date"
                         label="From"
-                        name="s_from"
+                        type="date"
+                        size='small'
                         value={LTC.s_from}
-                        onChange={(newValue) => {setLTC({...LTC,s_from:newValue})}}
-                        renderInput={(params) => <TextField size='small' {...params} />}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
                     />
-                    </LocalizationProvider>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                            label="To"
-                            name="s_to"
-                            value={LTC.s_to}
-                            onChange={(newValue) => {setLTC({...LTC,s_to:newValue})}}
-                            renderInput={(params) => <TextField size='small' {...params} />}
-                        />
-                    </LocalizationProvider>
+                    <TextField required
+                        id="date"
+                        label="To"
+                        type="date"
+                        size='small'
+                        value={LTC.s_to}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
                 </div>
             </div>
             <div className='spouse'>
                 <p >Whether spouse is employed, if yes whether entitled to LTC:</p>
                 <FormControl style={{width: "20%",paddingTop: "0.5%"}}>
                     <InputLabel id="select-label">Select</InputLabel>
-                    <Select
+                    <Select required
                     labelId="select-label"
                     id="simple-select"
                     name='spouse'
@@ -217,62 +243,74 @@ function Employee(props){
                 <div className='self'>
                     <p>Proposed dates of Journey:</p>
                     <p>Self:</p>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                        label="Outward Journey"
-                        name='sj_from_value'
+                    <TextField required
+                        id="date"
+                        label="From"
+                        type="date"
+                        size='small'
                         value={LTC.sj_from_value}
-                        onChange={(newValue) => {setLTC({...LTC,sj_from_value:newValue})}}
-                        renderInput={(params) => <TextField size='small' {...params} />}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
                     />
-                    </LocalizationProvider>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                            label="Inward Journey"
-                            name='sj_to_value'
-                            value={LTC.sj_to_value}
-                            onChange={(newValue) => {setLTC({...LTC,sj_to_value:newValue})}}
-                            renderInput={(params) => <TextField size='small' {...params} />}
-                        />
-                    </LocalizationProvider>
+                    <TextField required
+                        id="date"
+                        label="To"
+                        type="date"
+                        size='small'
+                        value={LTC.sj_to_value}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
                     </div>
                 <div className='family'>
                     <p>Family:</p>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                        label="Outward Journey"
-                        name='fj_from_value'
+                    <TextField required
+                        id="date"
+                        label="From"
+                        type="date"
+                        size='small'
                         value={LTC.fj_from_value}
-                        onChange={(newValue) => {setLTC({...LTC,fj_from_value:newValue})}}
-                        renderInput={(params) => <TextField size='small' {...params} />}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
                     />
-                    </LocalizationProvider>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                            label="Inward Journey"
-                            name='fj_to_value'
-                            value={LTC.fj_to_value}
-                            onChange={(newValue) => {setLTC({...LTC,fj_to_value:newValue})}}
-                            renderInput={(params) => <TextField size='small' {...params} />}
-                        />
-                    </LocalizationProvider>
+                    <TextField required
+                        id="date"
+                        label="To"
+                        type="date"
+                        size='small'
+                        value={LTC.fj_to_value}
+                        onChange={inputEventemp}
+                        sx={{ width: 220 }}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
                 </div>
             </div>
             <div className='town'>
                 <p>Home Town as recorded in the Service Book:</p>
-                <TextField id="outlined-basic" label="Hometown Name" size='small' variant="outlined" name='homeTown' value={LTC.homeTown} onChange={inputEventltc}/>
+                <TextField required id="outlined-basic" label="Hometown Name" size='small' variant="outlined" name='homeTown' value={LTC.homeTown} onChange={inputEventltc}/>
             </div>
             <div className='nature_ltc'>
                 <p>Nature of LTC to be availed, Home Town/Anywhere in India with Block Year:</p>
-                <TextField id="outlined-basic" label="Nature of LTC" size='small' variant="outlined" name='NatureLTC' value={LTC.NatureLTC} onChange={inputEventltc} />
+                <TextField required id="outlined-basic" label="Nature of LTC" size='small' variant="outlined" name='NatureLTC' value={LTC.NatureLTC} onChange={inputEventltc} />
             </div>
             <div className='place_visited'>
                 <p>If, anywhere in India, the place to be visited:</p>
-                <TextField id="outlined-basic" label="Place Name" size='small' variant="outlined" name='Destination' value={LTC.Destination} onChange={inputEventltc}/>
+                <TextField required id="outlined-basic" label="Place Name" size='small' variant="outlined" name='Destination' value={LTC.Destination} onChange={inputEventltc}/>
             </div>
             <div className='fare'>
                 <p>Estimated fare of entitled class from the headquarter to Home Town/Place of visit by shortest route:</p>
-                <TextField id="outlined-basic" label="₹" size='small' variant="outlined" name='EstimatedFare' value={LTC.EstimatedFare} onChange={inputEventltc} />
+                <TextField required id="outlined-basic" label="₹" size='small' variant="outlined" name='EstimatedFare' value={LTC.EstimatedFare} onChange={inputEventltc} />
                 <Button variant="contained" component="span">Upload</Button>
             </div>
             <div className='person_details'>
@@ -304,7 +342,7 @@ function Employee(props){
                 <p>Advance Required:</p>
                 <FormControl  style={{width: "7%",paddingTop: "0.5%"}}>
                     <InputLabel id="select-label_back">Yes/No</InputLabel>
-                    <Select
+                    <Select required
                     labelId="select-label_back"
                     id="simple-select_back"
                     name='adv'
@@ -322,7 +360,7 @@ function Employee(props){
                 <p>Encashment of earned leave required:</p>
                 <FormControl style={{width: "7%",paddingTop: "0.5%"}}>
                     <InputLabel id="select-label_back">Yes/No</InputLabel>
-                    <Select
+                    <Select required
                     labelId="select-label_back"
                     id="simple-select_back"
                     name='encashment'
@@ -339,7 +377,7 @@ function Employee(props){
                 <TextField id="outlined-basic" label="No. of Days" size='small' variant="outlined" name='Edays' value={LTC.Edays} onChange={inputEventltc} />
             </div>
             <div className='undertaking'>
-                <Checkbox checked={LTC.checked} onChange={(newValue) => {setLTC({...LTC,checked:newValue.target.checked})}} inputProps={{ 'aria-label': 'controlled' }}/>
+                <Checkbox required checked={LTC.checked} onChange={(newValue) => {setLTC({...LTC,checked:newValue.target.checked})}} inputProps={{ 'aria-label': 'controlled' }}/>
                 I undertake (a) to produce the tickets for the journey within ten days of receipt of the advance (b) to refund the entire 
                 advance in lump sum, in the event of cancellation of the journey within two months from the date of drawl of the advance or 
                 failure to produce the tickets within 10 days of drawl the advance (c) to travel by Air/Rail/Road as per my entitlement and
@@ -353,20 +391,18 @@ function Employee(props){
             <div className='certification'>
                 <ol type="1">
                     <li>The information, as given above is true to the best of my knowledge and belief; and</li>
-                    <li>My spouse is not employed in Government service / my spouse is employed in government service and the concession has not been availed of by him/her separately of himself/herself or for any of the family members for the <TextField id="standard-basic" size='small' label="" variant="standard" style={{width: "100px"}} name='cert' value={LTC.cert} onChange={inputEventltc}   />block year.</li>
+                    <li>My spouse is not employed in Government service / my spouse is employed in government service and the concession has not been availed of by him/her separately of himself/herself or for any of the family members for the <TextField required id="standard-basic" size='small' label="" variant="standard" style={{width: "100px"}} name='cert' value={LTC.cert} onChange={inputEventltc}   />block year.</li>
                 </ol> 
             </div>
             <div className='sign'>
                 <b>Signature of the Applicant with date</b>
             </div>
         </div>
-
-        {
-            trig===1?<><div className="formsubmit" style={{marginLeft:"33vw",marginRight:"33vw",marginBottom:"4vh"}}>
-                <div className="formsubmittext">Your Form is Submitted!! <button onClick={printdoc}>Print</button></div>
-            </div></>
-            :<button onClick={submit} style={{marginLeft:"45vw",marginRight:"45vw",marginBottom:"4vh"}}>Submit</button>
-        }
+        <Button id = "sub" type="submit" style={{marginLeft:"45vw",marginRight:"45vw",marginBottom:"4vh"}}>Submit</Button>
+    </form>
+    <div className="formsubmit" style={{marginLeft:"33vw",marginRight:"33vw",marginBottom:"4vh",opacity:"1"}}>
+        <div className="formsubmittext">Your Form is Submitted!! <Button disabled id = "print" onClick={printdoc}>Print</Button></div>
+    </div>
     </>
     )
 }
