@@ -82,9 +82,6 @@ function Employee(props){
     const submit=(e)=>{
         settrig(1);
         props.getdata(employee,tableData,LTC);
-        const rr = document.getElementById("sub");
-        rr.remove();
-        document.getElementById("print").disabled = false;
         e.preventDefault();
     }
 
@@ -398,10 +395,16 @@ function Employee(props){
                 <b>Signature of the Applicant with date</b>
             </div>
         </div>
-        <Button id = "sub" type="submit" style={{marginLeft:"45vw",marginRight:"45vw",marginBottom:"4vh"}}>Submit</Button>
+        {
+            trig==0
+            ?<Button id = "sub" type="submit" style={{marginLeft:"45vw",marginRight:"45vw",marginBottom:"4vh"}}>Submit</Button>
+            :<><div className="formsubmittext">Your Form is Submitted!! <Button id = "print" onClick={printdoc}>Print</Button> </div></>
+        }
+        
+        
     </form>
     <div className="formsubmit" style={{marginLeft:"33vw",marginRight:"33vw",marginBottom:"4vh",opacity:"1"}}>
-        <div className="formsubmittext">Your Form is Submitted!! <Button disabled id = "print" onClick={printdoc}>Print</Button></div>
+        
     </div>
     </>
     )
