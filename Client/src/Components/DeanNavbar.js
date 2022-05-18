@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useState,useEffect } from 'react';
 import {Link} from "react-router-dom"
 import {auth} from "../firebase-config";
@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import styles from './mynav.module.css';
-export default function Menubar() {
+
+export default function AdminNavbar() {
   const navigate = useNavigate();
 
   const signoutfunc=()=>{
@@ -32,7 +32,6 @@ export default function Menubar() {
     const uid=auth.currentUser.uid
     const response =await fetch("https://ltc-mgmt.herokuapp.com/name/"+uid)
     const d=await response.json()
-    console.log("OKP",d)
     setdata(d)
 
   }
@@ -40,30 +39,20 @@ export default function Menubar() {
   useEffect (()=>{
     LoadName() 
   },[])
-
-  console.log(data)
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <div className='container'>
     <AppBar position="static">
         <Toolbar className={styles.a1}>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-          <AiOutlineMenu color='white'/>
-          </IconButton> */}
           <Typography className={styles.a2}>
-            <Link to={"/userpage/"+auth.currentUser.uid+"/home"} className={styles.a3}>
-              Home
-            </Link>
-            <Link to={"/userpage/"+auth.currentUser.uid+"/previousApplication"} className={styles.a3}>
+          <h2 style={{color: "white"}}>DEAN</h2>
+            <Link to={"/deanpage/" + auth.currentUser.uid + "/previous"} className={styles.a3}>
               Previous Applications
             </Link>
-            <Link to= {"/userpage/"+auth.currentUser.uid+"/newApplication/-1"} className={styles.a3}>
-              New Application
+            <Link to= {"/deanpage/"+auth.currentUser.uid+"/new"} className={styles.a3}>
+              New Applications
+            </Link>
+            <Link to={"/deanpage/" + auth.currentUser.uid + "/create_role"} className={styles.a3}>
+              Create Role
             </Link>
           </Typography>
           <Typography className={styles.a2} style={{justifyContent:"flex-end"}}>
@@ -71,6 +60,7 @@ export default function Menubar() {
             <button color="inherit" onClick={signoutfunc} className={styles.signout_btn}>Sign Out</button>
           </Typography>
         </Toolbar>
-      </AppBar></Box>
+      </AppBar>
+    </div>
   )
 }

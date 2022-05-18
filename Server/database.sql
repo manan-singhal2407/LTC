@@ -32,7 +32,33 @@ CREATE TABLE employee(
     blockYear VARCHAR,
     ltcTable VARCHAR,
     requestStatus VARCHAR,
-    day_date_submitted VARCHAR
+    day_date_submitted VARCHAR,
+    hod VARCHAR,
+    jr_assistant VARCHAR,
+    jr_superintendent VARCHAR,
+    asst_registrar VARCHAR,
+    asst_audit_officer VARCHAR,
+    audit_officer VARCHAR,
+    sr_audit_officer VARCHAR,
+    jr_acc VARCHAR,
+    jr_acc_officer VARCHAR,
+    acc_asst_registrar VARCHAR,
+    deputy_registrar VARCHAR,
+    registrar VARCHAR,
+    dean VARCHAR,
+    hod_comment VARCHAR,
+    jr_assistant_comment VARCHAR,
+    jr_superintendent_comment VARCHAR,
+    asst_registrar_comment VARCHAR,
+    asst_audit_officer_comment VARCHAR,
+    audit_officer_comment VARCHAR,
+    sr_audit_officer_comment VARCHAR,
+    jr_acc_comment VARCHAR,
+    jr_acc_officer_comment VARCHAR,
+    acc_asst_registrar_comment VARCHAR,
+    deputy_registrar_comment VARCHAR,
+    registrar_comment VARCHAR,
+    dean_comment VARCHAR
 );
 
 
@@ -42,5 +68,44 @@ CREATE TABLE roles(
     empcode INTEGER,
     designation VARCHAR,
     department VARCHAR,
-    userid VARCHAR, 
+    uid VARCHAR,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    band_pay VARCHAR,
+    joining_date VARCHAR 
+
 );
+
+CREATE TABLE est_sec(
+    reqid INTEGER,
+    submitdate DATE,
+    joining date,
+    blockYear VARCHAR,
+    nature_ltc_last VARCHAR,
+    nature_ltc_current VARCHAR,
+    per_from_last DATE,
+    per_to_last DATE,
+    per_from_current DATE,
+    per_to_current date,
+    ltc_sf_last date,
+    ltc_sf_current date,
+    encash_last VARCHAR,
+    encash_current VARCHAR,
+    credit DATE,
+    credit_last VARCHAR,
+    credit_current VARCHAR,
+    balance_last VARCHAR,
+    balance_current VARCHAR,
+    admiss_last VARCHAR,
+    admiss_current VARCHAR,
+    sac_per_from_last DATE,
+    sac_per_to_last DATE,
+    sac_nature_last VARCHAR,
+    sac_per_from_current DATE,
+    sac_per_to_current DATE,
+    sac_nature_current VARCHAR
+);
+
+reate table acc_table (requestid integer,table_data jsonb[], total integer, advanced integer, passed integer, words varchar, debit varchar); 
+
+-- TRUNCATE TABLE employee RESTART IDENTITY; 

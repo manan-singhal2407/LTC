@@ -1,11 +1,10 @@
 import React from 'react'
+import AccountsNavBar from './AccountsNavBar';
 import { Outlet } from 'react-router-dom'
-import AdminNavbar from './AdminNavbar'
-
-export default function AdminPage() {
+export default function AccountsPage() {
   return (
     <>
-    <AdminNavbar/>
+    <AccountsNavBar/>
     <Outlet/>
     </>
   )

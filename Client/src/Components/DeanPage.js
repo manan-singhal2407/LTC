@@ -1,11 +1,11 @@
 import React from 'react'
+import DeanNavbar from './DeanNavbar'
 import { Outlet } from 'react-router-dom'
-import AdminNavbar from './AdminNavbar'
 
-export default function AdminPage() {
+export default function DeanPage() {
   return (
     <>
-    <AdminNavbar/>
+    <DeanNavbar/>
     <Outlet/>
     </>
   )

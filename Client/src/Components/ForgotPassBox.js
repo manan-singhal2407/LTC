@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import {sendPasswordResetEmail}from "firebase/auth";
 import {auth} from "../firebase-config";
 import "./LoginBox.css"
-import Navbar from './nav';
 
 const ForgotPassBox=()=>{
 
@@ -20,7 +19,6 @@ const getlink=()=>{
 
 return(
     <>
-    <Navbar/>
     <div className="container1">
         <div className="box1">
             <div className="heading1">

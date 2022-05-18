@@ -3,8 +3,6 @@ import { Link,useNavigate } from "react-router-dom";
 import{getAuth, signInWithEmailAndPassword, sendEmailVerification} from "firebase/auth"
 import {auth} from "../firebase-config"
 import './LoginBox.css';
-import Navbar from './nav';
-import { async } from '@firebase/util';
 //import {toast} from 'react-toastify';
 //import 'react-toastify/dist/ReactToastify.css';
 //toast.configure()
@@ -26,15 +24,44 @@ const LoginBox = () => {
             if (getAuth().currentUser.emailVerified) {
 
                 
-                const response = await fetch("http://127.0.0.1:5000/getrole/"+email)
+                const response = await fetch("https://ltc-mgmt.herokuapp.com/getrole/"+email)
                 const  data =await response.json()
                 console.log(data)
                 if(data ==="admin"){
                     navigate("/adminpage/"+auth.currentUser.uid);
                 }
-                else{
+                else if(data ==="user"){
                     navigate("/userpage/"+auth.currentUser.uid+"/home")
                 }
+                else if(data === "establishment"){
+                    navigate("/estabpage/"+auth.currentUser.uid)
+                }
+                else if(data === "superintendent"){
+                    navigate("/estabpage/"+auth.currentUser.uid)
+                }
+                else if(data === "registrar"){
+                    navigate("/estabpage/"+auth.currentUser.uid)
+                }
+                else if(data ==="asstauditofficer"){
+                    navigate("/auditpage/"+auth.currentUser.uid)
+                }
+                else if(data ==="audit_officer"){
+                    navigate("/auditpage/"+auth.currentUser.uid)
+                }
+                else if(data ==="senior"){
+                    navigate("/auditpage/"+auth.currentUser.uid)
+                }
+                else if(data ==="dean" ){
+                    navigate("/deanpage/"+auth.currentUser.uid)
+                }
+                else if(data ==="jr_acc" || data ==="jr_acc_officer" || data ==="acc_asst_registrar" || data ==="acc_deputy_registrar"){
+                    navigate("/accountspage/"+auth.currentUser.uid)
+                }
+                else if(data ==="main_registrar" ){
+                    navigate("/registrarpage/"+auth.currentUser.uid)
+                }
+
+
                 console.log("Email verified send to next page")
             }
             else {
@@ -86,7 +113,6 @@ const LoginBox = () => {
 
     return (
         <>
-        <Navbar/>
         <div className="container1" id ="at">
             <div className="box1">
                 <div className="heading1">

@@ -3,7 +3,6 @@ import {createUserWithEmailAndPassword, getAuth, sendEmailVerification}from "fir
 import {auth} from "../firebase-config";
 import { useNavigate} from "react-router-dom"
 import "./LoginBox.css"
-import Navbar from './nav';
 
 const RegisterBox=()=>{
 
@@ -58,7 +57,6 @@ const RegisterBox=()=>{
     }
 return(
     <>
-    <Navbar/>
     <div className="container1">
         <div className="box1">
             <div className="heading1">

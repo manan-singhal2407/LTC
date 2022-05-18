@@ -2,7 +2,6 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import { Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Routes,
@@ -27,7 +26,6 @@ const App = ()=>{
 
   function approve (id){
       tb[id].status = "Approved"
-      console.log(id)
   }
   const filltable = (element, index)=>{
     return (

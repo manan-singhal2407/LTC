@@ -1,11 +1,11 @@
 import React from 'react'
+import AuditNavbar from './AuditNavbar';
 import { Outlet } from 'react-router-dom'
-import AdminNavbar from './AdminNavbar'
 
-export default function AdminPage() {
+export default function AuditPage() {
   return (
     <>
-    <AdminNavbar/>
+    <AuditNavbar/>
     <Outlet/>
     </>
   )

@@ -2,7 +2,7 @@
     width: 100;
     height: 68vh;
     padding-top: 16vh;
-    padding-left: 35vw;    
+    padding-left: 35vw; 
 }
 .box1{
     width: fit-content;
@@ -20,11 +20,11 @@
 }
 
 .uname{
+    background:transparent;
     background-image: url("./iconsuser.png");
-    background-color: white;
+    
     background-position: 0px 4px;
     background-repeat: no-repeat;
-    /* padding-left: 40px; */
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 30px;
@@ -46,8 +46,9 @@
 }
 
 .pass{
+    background:transparent;
     background-image: url("./iconspass.png");
-    background-color: white;
+    
     background-position: 0px 7px;
     background-repeat: no-repeat;
     opacity: 10;

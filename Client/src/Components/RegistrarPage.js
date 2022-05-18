@@ -1,11 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import AdminNavbar from './AdminNavbar'
-
-export default function AdminPage() {
+import RegistrarNavBar from './RegistrarNavBar';
+export default function RegistrarPage() {
   return (
     <>
-    <AdminNavbar/>
+    <RegistrarNavBar/>
     <Outlet/>
     </>
   )
